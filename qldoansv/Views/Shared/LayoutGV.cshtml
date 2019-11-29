@@ -45,14 +45,14 @@
         <!-- Sidebar -->
         <ul class="sidebar navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="@Url.Action("Index","GiangVien")">
                     <span>
-                        Danh Mục
+                        Profile
                     </span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="~/Views/GiangVien/QuanLySinhVien.cshtml">
+                <a class="nav-link" href="@Url.Action("QuanLySinhVien","GiangVien")">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Quản Lý Sinh Viên</span>
                 </a>
@@ -67,6 +67,7 @@
                     <a href="@Url.Action("ThongTinDoAn","GiangVien")" class="dropdown-item">Thông Tin Đồ Án</a>
                     <a href="@Url.Action("NhomDoAn","GiangVien")" class="dropdown-item">Nhóm Đồ Án</a>
                     <a href="@Url.Action("ChamDiemDoAn","GiangVien")" class="dropdown-item">Chấm Điểm Đồ Án</a>
+                    <a href="@Url.Action("FileBaoCao","GiangVien")" class="dropdown-item">File Báo Cáo</a>
                     <div class="dropdown-divider"></div>
                 </div>
             </li>

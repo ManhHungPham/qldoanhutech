@@ -32,5 +32,9 @@ namespace qldoansv.Controllers
         {
             return View();
         }
+        public IActionResult FileBaoCao()
+        {
+            return View();
+        }
     }
 }
