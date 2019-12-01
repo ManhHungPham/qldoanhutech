@@ -64,7 +64,7 @@ using qldoansv.Models;
             WriteLiteral("    ");
             EndContext();
             BeginContext(90, 521, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "08e6173765b6443ba5de3fbbd86f869c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2d6185610fb4555b684864f2bebcef0", async() => {
                 BeginContext(96, 508, true);
                 WriteLiteral(@"
         <h1>Đăng nhập</h1>

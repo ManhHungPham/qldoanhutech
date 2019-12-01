@@ -70,7 +70,7 @@ using qldoansv.Models;
             WriteLiteral("\r\n    <div class=\"row\">\r\n        <!-- Column -->\r\n        <div class=\"col-lg-4 col-xlg-3 col-md-5\">\r\n            <div class=\"card\">\r\n                <div class=\"card-body\">\r\n                    <center class=\"m-t-30\">\r\n                        ");
             EndContext();
             BeginContext(334, 71, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "0f2d6323a1504b0b80320f4aa979be77", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "993e9061040e4fc48c9f21da08aeab76", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -111,7 +111,7 @@ using qldoansv.Models;
                     ");
             EndContext();
             BeginContext(1273, 2383, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "18a44d7a28154044ad59731099c61078", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e4bc17c4d035412ba221814a7de4abfe", async() => {
                 BeginContext(1317, 1868, true);
                 WriteLiteral(@"
                         <div class=""form-group"">
@@ -148,7 +148,7 @@ using qldoansv.Models;
                                     ");
                 EndContext();
                 BeginContext(3185, 20, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "09a5edc9667c4bbbb32eb68543aebc06", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "93d3b04c39b6440395b17650415cc7cf", async() => {
                     BeginContext(3193, 3, true);
                     WriteLiteral("Nam");
                     EndContext();
@@ -168,7 +168,7 @@ using qldoansv.Models;
                 WriteLiteral("\r\n                                    ");
                 EndContext();
                 BeginContext(3243, 19, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d91d9bfb46254bc99853b3b4b3bccf60", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "04a155a69d6f48789c9b193e69947578", async() => {
                     BeginContext(3251, 2, true);
                     WriteLiteral("Nữ");
                     EndContext();
