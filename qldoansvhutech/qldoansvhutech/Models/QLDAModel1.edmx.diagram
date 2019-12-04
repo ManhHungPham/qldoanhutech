@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="56665e7909b1458b8d1b624baf30e210" Name="Diagram1">
+        <EntityTypeShape EntityType="QuanLyDoAnModel.admin" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyDoAnModel.doan" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyDoAnModel.gvhd" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyDoAnModel.nhom" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyDoAnModel.ptda" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyDoAnModel.sinhvien" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="QuanLyDoAnModel.FK_ptda_doan" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyDoAnModel.FK_ptda_gvhd" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyDoAnModel.FK_sinhvien_nhom1" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyDoAnModel.FK_ptda_sinhvien" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
