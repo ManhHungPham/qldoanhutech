@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QuanLyDoAnModelStoreContainer" CdmEntityContainer="QuanLyDoAnEntities2">
+    <EntitySetMapping Name="admins">
+      <EntityTypeMapping TypeName="QuanLyDoAnModel.admin">
+        <MappingFragment StoreEntitySet="admin">
+          <ScalarProperty Name="Taikhoan" ColumnName="Taikhoan" />
+          <ScalarProperty Name="Matkhau" ColumnName="Matkhau" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="doans">
+      <EntityTypeMapping TypeName="QuanLyDoAnModel.doan">
+        <MappingFragment StoreEntitySet="doan">
+          <ScalarProperty Name="Mada" ColumnName="Mada" />
+          <ScalarProperty Name="Tenda" ColumnName="Tenda" />
+          <ScalarProperty Name="Thoigianbd" ColumnName="Thoigianbd" />
+          <ScalarProperty Name="Thoigiankt" ColumnName="Thoigiankt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gvhds">
+      <EntityTypeMapping TypeName="QuanLyDoAnModel.gvhd">
+        <MappingFragment StoreEntitySet="gvhd">
+          <ScalarProperty Name="Magv" ColumnName="Magv" />
+          <ScalarProperty Name="Matkhau" ColumnName="Matkhau" />
+          <ScalarProperty Name="Hotengv" ColumnName="Hotengv" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Mada" ColumnName="Mada" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="nhoms">
+      <EntityTypeMapping TypeName="QuanLyDoAnModel.nhom">
+        <MappingFragment StoreEntitySet="nhom">
+          <ScalarProperty Name="Manhom" ColumnName="Manhom" />
+          <ScalarProperty Name="Mssv" ColumnName="Mssv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ptdas">
+      <EntityTypeMapping TypeName="QuanLyDoAnModel.ptda">
+        <MappingFragment StoreEntitySet="ptda">
+          <ScalarProperty Name="Magv" ColumnName="Magv" />
+          <ScalarProperty Name="Mada" ColumnName="Mada" />
+          <ScalarProperty Name="Mssv" ColumnName="Mssv" />
+          <ScalarProperty Name="Diem" ColumnName="Diem" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sinhviens">
+      <EntityTypeMapping TypeName="QuanLyDoAnModel.sinhvien">
+        <MappingFragment StoreEntitySet="sinhvien">
+          <ScalarProperty Name="Mssv" ColumnName="Mssv" />
+          <ScalarProperty Name="Matkhau" ColumnName="Matkhau" />
+          <ScalarProperty Name="Hoten" ColumnName="Hoten" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Gioitinh" ColumnName="Gioitinh" />
+          <ScalarProperty Name="Manhom" ColumnName="Manhom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

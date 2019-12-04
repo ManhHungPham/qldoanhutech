@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyDoAnModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="Taikhoan" />
+    </Key>
+    <Property Name="Taikhoan" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Matkhau" Type="nchar" MaxLength="16" />
+  </EntityType>
+  <EntityType Name="doan">
+    <Key>
+      <PropertyRef Name="Mada" />
+    </Key>
+    <Property Name="Mada" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Tenda" Type="nvarchar" MaxLength="50" />
+    <Property Name="Thoigianbd" Type="date" />
+    <Property Name="Thoigiankt" Type="date" />
+  </EntityType>
+  <EntityType Name="gvhd">
+    <Key>
+      <PropertyRef Name="Magv" />
+    </Key>
+    <Property Name="Magv" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Matkhau" Type="nchar" MaxLength="16" />
+    <Property Name="Hotengv" Type="nvarchar" MaxLength="150" />
+    <Property Name="Email" Type="nvarchar" MaxLength="150" />
+    <Property Name="Mada" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="nhom">
+    <Key>
+      <PropertyRef Name="Manhom" />
+    </Key>
+    <Property Name="Manhom" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Mssv" Type="nchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ptda">
+    <Key>
+      <PropertyRef Name="Mada" />
+      <PropertyRef Name="Mssv" />
+    </Key>
+    <Property Name="Magv" Type="nchar" MaxLength="20" />
+    <Property Name="Mada" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Mssv" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Diem" Type="int" />
+  </EntityType>
+  <EntityType Name="sinhvien">
+    <Key>
+      <PropertyRef Name="Mssv" />
+    </Key>
+    <Property Name="Mssv" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Matkhau" Type="nchar" MaxLength="16" />
+    <Property Name="Hoten" Type="nvarchar" MaxLength="150" />
+    <Property Name="Email" Type="nchar" MaxLength="50" />
+    <Property Name="Gioitinh" Type="bit" />
+    <Property Name="Manhom" Type="nchar" MaxLength="20" />
+  </EntityType>
+  <Association Name="FK_ptda_doan">
+    <End Role="doan" Type="Self.doan" Multiplicity="1" />
+    <End Role="ptda" Type="Self.ptda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="doan">
+        <PropertyRef Name="Mada" />
+      </Principal>
+      <Dependent Role="ptda">
+        <PropertyRef Name="Mada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ptda_gvhd">
+    <End Role="gvhd" Type="Self.gvhd" Multiplicity="0..1" />
+    <End Role="ptda" Type="Self.ptda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gvhd">
+        <PropertyRef Name="Magv" />
+      </Principal>
+      <Dependent Role="ptda">
+        <PropertyRef Name="Magv" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ptda_sinhvien">
+    <End Role="sinhvien" Type="Self.sinhvien" Multiplicity="1" />
+    <End Role="ptda" Type="Self.ptda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sinhvien">
+        <PropertyRef Name="Mssv" />
+      </Principal>
+      <Dependent Role="ptda">
+        <PropertyRef Name="Mssv" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sinhvien_nhom1">
+    <End Role="nhom" Type="Self.nhom" Multiplicity="0..1" />
+    <End Role="sinhvien" Type="Self.sinhvien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nhom">
+        <PropertyRef Name="Manhom" />
+      </Principal>
+      <Dependent Role="sinhvien">
+        <PropertyRef Name="Manhom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuanLyDoAnModelStoreContainer">
+    <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="doan" EntityType="Self.doan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gvhd" EntityType="Self.gvhd" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="nhom" EntityType="Self.nhom" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ptda" EntityType="Self.ptda" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sinhvien" EntityType="Self.sinhvien" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ptda_doan" Association="Self.FK_ptda_doan">
+      <End Role="doan" EntitySet="doan" />
+      <End Role="ptda" EntitySet="ptda" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ptda_gvhd" Association="Self.FK_ptda_gvhd">
+      <End Role="gvhd" EntitySet="gvhd" />
+      <End Role="ptda" EntitySet="ptda" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ptda_sinhvien" Association="Self.FK_ptda_sinhvien">
+      <End Role="sinhvien" EntitySet="sinhvien" />
+      <End Role="ptda" EntitySet="ptda" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sinhvien_nhom1" Association="Self.FK_sinhvien_nhom1">
+      <End Role="nhom" EntitySet="nhom" />
+      <End Role="sinhvien" EntitySet="sinhvien" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
