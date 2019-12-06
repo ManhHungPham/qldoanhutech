@@ -1,14 +1,12 @@
-﻿
+﻿@model IEnumerable<qldoansvhutech.Models.sinhvien>
+
 @{
     ViewBag.Title = "QuanLySinhVien";
     Layout = "~/Views/Shared/LayoutGV.cshtml";
 }
-
-<h2>QuanLySinhVien</h2>
 <a href="#">
     <span class="pull-left"><button class="btn btn-info btn-sm">Thêm mới</button></span>
 </a>
-<!-- /.box-header -->
 <div class="col-xs-12">
     <div class="box"
         <div class="box-header">
@@ -21,61 +19,54 @@
                 </div>
             </div>
         </div>
-        <!-- /.box-header -->
-        <div class="box-body table-responsive no-padding">
-            <table class="table table-hover">
-                <tbody>
-                    <tr>
-                        <th>MSSV</th>
-                        <th>Họ và tên</th>
-                        <th>Giới tính</th>
-                        <th>NgaySinh</th>
-                        <th>Email</th>
-                        <th>Thay Đổi</th>
-                    </tr>
-
-                    <tr>
-                        <td>1811090321</td>
-                        <td>Nguyễn Văn A</td>
-                        <td> Nam </td>
-                        <td>10/01</td>
-                        <td>NNT@gmail.com</td>
-                        <td>
-
-                            <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_edit_user_5"><i class="fa fa-pencil" aria-hidden="true"></i>Sửa</a>
-                            <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_edit_user_5"><i class="fa fa-trash-o" aria-hidden="true"></i>Xóa</a>
-
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>1811090322</td>
-                        <td>Nguyễn Văn B</td>
-                        <td> Nam </td>
-                        <td>10/01</td>
-                        <td>NNT1@gmail.com</td>
-                        <td>
-                            <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_edit_user_5"><i class="fa fa-pencil" aria-hidden="true"></i>Sửa</a>
-                            <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_edit_user_5"><i class="fa fa-trash-o" aria-hidden="true"></i>Xóa</a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>1811090322</td>
-                        <td>Nguyễn Thị C</td>
-                        <td> Nữ </td>
-                        <td>10/10</td>
-                        <td>ntc@gmail.com</td>
-                        <td>
-                            <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_edit_user_5"><i class="fa fa-pencil" aria-hidden="true"></i>Sửa</a>
-                            <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_edit_user_5"><i class="fa fa-trash-o" aria-hidden="true"></i>Xóa</a>
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
-        </div>
-        <!-- /.box-body -->
     </div>
-    <!-- /.box -->
-</div>
+<table class="table">
+    <tr>
+        <th>
+            MSSV
+        </th>
+        <th>
+            Họ và tên
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Giới tính
+        </th>
+        <th>
+            Mã Nhóm
+        </th>
+        <th>
+            Tùy chọn
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <th>
+        @Html.DisplayFor(modelItem => item.mssv)
+    </th>
+    <td>
+        @Html.DisplayFor(modelItem => item.hoten)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.gioitinh)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.manhom)
+    </td>
+    <td>
+        <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_edit_user_5"><i class="fa fa-pencil" aria-hidden="true"></i>Sửa</a>
+        <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_edit_user_5"><i class="fa fa-trash-o" aria-hidden="true"></i>Xóa</a>
+    </td>
+
+</tr>
+}
+
+</table>
+    </div>
+

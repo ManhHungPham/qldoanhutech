@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QuanLyDoAn" Class="QLDADataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-JKDHQOJ\SQLEXPRESS;Initial Catalog=QuanLyDoAn;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QuanLyDoAnConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.admin" Member="admins">
+    <Type Name="admin">
+      <Column Name="taikhoan" Type="System.String" DbType="NChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="matkhua" Type="System.String" DbType="NChar(16)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.nhom" Member="nhoms">
+    <Type Name="nhom">
+      <Column Name="manhom" Type="System.String" DbType="NChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="mssv" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="nhom_sinhvien" Member="sinhviens" ThisKey="manhom" OtherKey="manhom" Type="sinhvien" />
+    </Type>
+  </Table>
+  <Table Name="dbo.gvhd" Member="gvhds">
+    <Type Name="gvhd">
+      <Column Name="magv" Type="System.String" DbType="NChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="matkhau" Type="System.String" DbType="NChar(16)" CanBeNull="true" />
+      <Column Name="hotengv" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="mada" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="gvhd_ptda" Member="ptdas" ThisKey="magv" OtherKey="magv" Type="ptda" />
+    </Type>
+  </Table>
+  <Table Name="dbo.doan" Member="doans">
+    <Type Name="doan">
+      <Column Name="mada" Type="System.String" DbType="NChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tenda" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="thoigianbd" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="thoigiankt" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="doan_ptda" Member="ptdas" ThisKey="mada" OtherKey="mada" Type="ptda" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ptda" Member="ptdas">
+    <Type Name="ptda">
+      <Column Name="magv" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+      <Column Name="mada" Type="System.String" DbType="NChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="mssv" Type="System.String" DbType="NChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="diem" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="doan_ptda" Member="doan" ThisKey="mada" OtherKey="mada" Type="doan" IsForeignKey="true" />
+      <Association Name="gvhd_ptda" Member="gvhd" ThisKey="magv" OtherKey="magv" Type="gvhd" IsForeignKey="true" />
+      <Association Name="sinhvien_ptda" Member="sinhvien" ThisKey="mssv" OtherKey="mssv" Type="sinhvien" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.sinhvien" Member="sinhviens">
+    <Type Name="sinhvien">
+      <Column Name="mssv" Type="System.String" DbType="NChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="matkhau" Type="System.String" DbType="NChar(16)" CanBeNull="true" />
+      <Column Name="hoten" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="gioitinh" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="manhom" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="sinhvien_ptda" Member="ptdas" ThisKey="mssv" OtherKey="mssv" Type="ptda" />
+      <Association Name="nhom_sinhvien" Member="nhom" ThisKey="manhom" OtherKey="manhom" Type="nhom" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

@@ -50,6 +50,7 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -125,6 +126,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\profile.png" />
     <Content Include="lib\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="lib\bootstrap\dist\css\bootstrap-theme.min.css" />
     <Content Include="lib\bootstrap\dist\css\bootstrap.css" />
@@ -143,16 +145,6 @@
     <Content Include="lib\jquery\dist\jquery.js" />
     <Content Include="lib\jquery\dist\jquery.min.js" />
     <Content Include="lib\jquery\LICENSE.txt" />
-    <Content Include="Models\QLDAModel1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QLDAModel1.edmx</DependentUpon>
-      <LastGenOutput>QLDAModel1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\QLDAModel1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QLDAModel1.edmx</DependentUpon>
-      <LastGenOutput>QLDAModel1.cs</LastGenOutput>
-    </Content>
     <Content Include="Models\Scripts\bootstrap.bundle.js" />
     <Content Include="Models\Scripts\bootstrap.bundle.min.js" />
     <Content Include="Models\Scripts\bootstrap.js" />
@@ -193,13 +185,14 @@
     <Content Include="lib\jquery-validation\LICENSE.md" />
     <Content Include="lib\jquery\.bower.json" />
     <Content Include="lib\jquery\dist\jquery.min.map" />
-    <EntityDeploy Include="Models\QLDAModel1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>QLDAModel1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\QLDAModel1.edmx.diagram">
-      <DependentUpon>QLDAModel1.edmx</DependentUpon>
+    <Content Include="Models\QLDA.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>QLDA.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
+    <None Include="Models\QLDA.dbml.layout">
+      <DependentUpon>QLDA.dbml</DependentUpon>
+    </None>
     <None Include="Models\Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Models\Scripts\demo\chart-area-demo.js" />
     <Content Include="Models\Scripts\demo\chart-bar-demo.js" />
@@ -1961,10 +1954,6 @@
     <Content Include="vendor\jquery\jquery.slim.min.map" />
     <Content Include="Views\Shared\LayoutGV.cshtml" />
     <Content Include="Views\GiangVien\Index.cshtml" />
-    <Content Include="Views\GiangVien\QuanLySinhVien.cshtml" />
-    <Content Include="Views\GiangVien\ThongTinDoAn.cshtml" />
-    <Content Include="Views\GiangVien\NhomDoAn.cshtml" />
-    <Content Include="Views\GiangVien\ChamDiemDoAn.cshtml" />
     <Content Include="Views\GiangVien\PhanChiaCongViec.cshtml" />
     <Content Include="Views\Shared\LayoutSV.cshtml" />
     <Content Include="Views\SinhVien\Dangkydoan.cshtml" />
@@ -1975,44 +1964,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DangnhapController.cs" />
     <Compile Include="Controllers\GiangVienController.cs" />
     <Compile Include="Controllers\SinhVienController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\admin.cs">
-      <DependentUpon>QLDAModel1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\doan.cs">
-      <DependentUpon>QLDAModel1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\gvhd.cs">
-      <DependentUpon>QLDAModel1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\nhom.cs">
-      <DependentUpon>QLDAModel1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ptda.cs">
-      <DependentUpon>QLDAModel1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\QLDAModel1.Context.cs">
+    <Compile Include="Models\QLDA.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QLDAModel1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\QLDAModel1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QLDAModel1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\QLDAModel1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QLDAModel1.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sinhvien.cs">
-      <DependentUpon>QLDAModel1.tt</DependentUpon>
+      <DependentUpon>QLDA.dbml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -2032,6 +1994,18 @@
     <Content Include="Models\Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\SinhVien\Thongtinsinhvien.cshtml" />
     <Content Include="Views\GiangVien\BaoCao.cshtml" />
+    <Content Include="Views\GiangVien\DangNhap.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\ThongTin.cshtml" />
+    <Content Include="Views\Admin\DanhSachGiangVien.cshtml" />
+    <Content Include="Views\Admin\PhanChiaHuongDan.cshtml" />
+    <Content Include="Views\Admin\DanhSachSinhVien.cshtml" />
+    <Content Include="Views\Admin\QuanLyDoAn.cshtml" />
+    <Content Include="Views\GiangVien\QuanLySinhVien.cshtml" />
+    <Content Include="Views\GiangVien\ThongTinDoAn.cshtml" />
+    <Content Include="Views\GiangVien\NhomDoAn.cshtml" />
+    <Content Include="Views\GiangVien\PhuTrachDoAn.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2043,6 +2017,7 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
