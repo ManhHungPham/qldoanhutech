@@ -10,7 +10,7 @@ namespace qldoansvhutech.Controllers
    
     public class DangnhapController : Controller
     {
-        QuanLyDoAnEntities2 db = new QuanLyDoAnEntities2();
+        QLDADataContext db = new QLDADataContext();
         // GET: Dangnhap
         public ActionResult Index()
         {
@@ -36,7 +36,7 @@ namespace qldoansvhutech.Controllers
             }
             else
             {
-                sinhvien sv = db.sinhviens.FirstOrDefault(n => n.Mssv == mssv && n.Matkhau == matkhau);
+                sinhvien sv = db.sinhviens.FirstOrDefault(n => n.mssv == mssv && n.matkhau == matkhau);
                 if (sv != null)
                 {
                     return RedirectToAction("Thongtinsinhvien", "SinhVien");
@@ -51,7 +51,7 @@ namespace qldoansvhutech.Controllers
             if(Session["mssv"]!=null)
             {
                 sinhvien sv = (sinhvien)Session["mssv"];
-                ViewBag.ThongBao = sv.Mssv;
+                ViewBag.ThongBao = sv.mssv;
             }
             return PartialView();
         }

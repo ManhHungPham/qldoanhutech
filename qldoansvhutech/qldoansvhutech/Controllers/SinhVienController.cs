@@ -9,7 +9,7 @@ namespace qldoansvhutech.Controllers
 {
     public class SinhVienController : Controller
     {
-        QuanLyDoAnEntities2 db = new QuanLyDoAnEntities2();
+        QLDADataContext db = new QLDADataContext();
 
         // GET: SinhVien
         public ActionResult Thongtinsinhvien()
