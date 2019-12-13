@@ -1,0 +1,37 @@
+﻿@model qldoansvhutech.Models.Sinhvien
+
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4 style="color:red;text-align:center">@ViewBag.ThongBao</h4>
+
+<table align="center">
+    <h2 style="text-align:center">Đăng Nhập </h2>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <tr style="height:20px">
+            <td>Tên đăng nhập:</td>
+            <td>
+                @Html.TextBox("Taikhoan")
+                @ViewData["Loi1"]
+            </td>
+        </tr>
+        <tr style="height:20px">
+            <td align="left">Mật khẩu :</td>
+            <td>
+                @Html.Password("Matkhau")
+                @ViewData["Loi2"]
+            </td>
+        </tr>
+        <tr style="height:40px">
+            <td></td>
+            <td>
+                <input type="submit" value="Đăng Nhập" class="btn btn-danger" />
+            </td>
+        </tr>
+    }
+</table>
+
