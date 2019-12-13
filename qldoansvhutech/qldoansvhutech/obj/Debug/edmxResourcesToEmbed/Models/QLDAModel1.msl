@@ -1,62 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="QuanLyDoAnModelStoreContainer" CdmEntityContainer="QuanLyDoAnEntities2">
+  <EntityContainerMapping StorageEntityContainer="QuanLyDoAnModelStoreContainer" CdmEntityContainer="QuanLyDoAnEntities3">
     <EntitySetMapping Name="admins">
       <EntityTypeMapping TypeName="QuanLyDoAnModel.admin">
         <MappingFragment StoreEntitySet="admin">
-          <ScalarProperty Name="Taikhoan" ColumnName="Taikhoan" />
-          <ScalarProperty Name="Matkhau" ColumnName="Matkhau" />
+          <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
+          <ScalarProperty Name="matkhua" ColumnName="matkhua" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="doans">
       <EntityTypeMapping TypeName="QuanLyDoAnModel.doan">
         <MappingFragment StoreEntitySet="doan">
-          <ScalarProperty Name="Mada" ColumnName="Mada" />
-          <ScalarProperty Name="Tenda" ColumnName="Tenda" />
-          <ScalarProperty Name="Thoigianbd" ColumnName="Thoigianbd" />
-          <ScalarProperty Name="Thoigiankt" ColumnName="Thoigiankt" />
+          <ScalarProperty Name="mada" ColumnName="mada" />
+          <ScalarProperty Name="tenda" ColumnName="tenda" />
+          <ScalarProperty Name="thoigianbd" ColumnName="thoigianbd" />
+          <ScalarProperty Name="thoigiankt" ColumnName="thoigiankt" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="gvhds">
       <EntityTypeMapping TypeName="QuanLyDoAnModel.gvhd">
         <MappingFragment StoreEntitySet="gvhd">
-          <ScalarProperty Name="Magv" ColumnName="Magv" />
-          <ScalarProperty Name="Matkhau" ColumnName="Matkhau" />
-          <ScalarProperty Name="Hotengv" ColumnName="Hotengv" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Mada" ColumnName="Mada" />
+          <ScalarProperty Name="magv" ColumnName="magv" />
+          <ScalarProperty Name="matkhau" ColumnName="matkhau" />
+          <ScalarProperty Name="hotengv" ColumnName="hotengv" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="mada" ColumnName="mada" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="nhoms">
       <EntityTypeMapping TypeName="QuanLyDoAnModel.nhom">
         <MappingFragment StoreEntitySet="nhom">
-          <ScalarProperty Name="Manhom" ColumnName="Manhom" />
-          <ScalarProperty Name="Mssv" ColumnName="Mssv" />
+          <ScalarProperty Name="manhom" ColumnName="manhom" />
+          <ScalarProperty Name="mssv" ColumnName="mssv" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ptdas">
       <EntityTypeMapping TypeName="QuanLyDoAnModel.ptda">
         <MappingFragment StoreEntitySet="ptda">
-          <ScalarProperty Name="Magv" ColumnName="Magv" />
-          <ScalarProperty Name="Mada" ColumnName="Mada" />
-          <ScalarProperty Name="Mssv" ColumnName="Mssv" />
-          <ScalarProperty Name="Diem" ColumnName="Diem" />
+          <ScalarProperty Name="magv" ColumnName="magv" />
+          <ScalarProperty Name="mada" ColumnName="mada" />
+          <ScalarProperty Name="mssv" ColumnName="mssv" />
+          <ScalarProperty Name="diem" ColumnName="diem" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="sinhviens">
       <EntityTypeMapping TypeName="QuanLyDoAnModel.sinhvien">
         <MappingFragment StoreEntitySet="sinhvien">
-          <ScalarProperty Name="Mssv" ColumnName="Mssv" />
-          <ScalarProperty Name="Matkhau" ColumnName="Matkhau" />
-          <ScalarProperty Name="Hoten" ColumnName="Hoten" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Gioitinh" ColumnName="Gioitinh" />
-          <ScalarProperty Name="Manhom" ColumnName="Manhom" />
+          <ScalarProperty Name="mssv" ColumnName="mssv" />
+          <ScalarProperty Name="matkhau" ColumnName="matkhau" />
+          <ScalarProperty Name="hoten" ColumnName="hoten" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="gioitinh" ColumnName="gioitinh" />
+          <ScalarProperty Name="manhom" ColumnName="manhom" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

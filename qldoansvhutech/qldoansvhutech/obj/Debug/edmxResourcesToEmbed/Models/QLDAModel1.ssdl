@@ -2,67 +2,67 @@
 <Schema Namespace="QuanLyDoAnModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="admin">
     <Key>
-      <PropertyRef Name="Taikhoan" />
+      <PropertyRef Name="taikhoan" />
     </Key>
-    <Property Name="Taikhoan" Type="nchar" MaxLength="20" Nullable="false" />
-    <Property Name="Matkhau" Type="nchar" MaxLength="16" />
+    <Property Name="taikhoan" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="matkhua" Type="nchar" MaxLength="16" />
   </EntityType>
   <EntityType Name="doan">
     <Key>
-      <PropertyRef Name="Mada" />
+      <PropertyRef Name="mada" />
     </Key>
-    <Property Name="Mada" Type="nchar" MaxLength="20" Nullable="false" />
-    <Property Name="Tenda" Type="nvarchar" MaxLength="50" />
-    <Property Name="Thoigianbd" Type="date" />
-    <Property Name="Thoigiankt" Type="date" />
+    <Property Name="mada" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="tenda" Type="nvarchar" MaxLength="50" />
+    <Property Name="thoigianbd" Type="date" />
+    <Property Name="thoigiankt" Type="date" />
   </EntityType>
   <EntityType Name="gvhd">
     <Key>
-      <PropertyRef Name="Magv" />
+      <PropertyRef Name="magv" />
     </Key>
-    <Property Name="Magv" Type="nchar" MaxLength="20" Nullable="false" />
-    <Property Name="Matkhau" Type="nchar" MaxLength="16" />
-    <Property Name="Hotengv" Type="nvarchar" MaxLength="150" />
-    <Property Name="Email" Type="nvarchar" MaxLength="150" />
-    <Property Name="Mada" Type="nchar" MaxLength="10" />
+    <Property Name="magv" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="matkhau" Type="nchar" MaxLength="16" />
+    <Property Name="hotengv" Type="nvarchar" MaxLength="150" />
+    <Property Name="email" Type="nvarchar" MaxLength="150" />
+    <Property Name="mada" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="nhom">
     <Key>
-      <PropertyRef Name="Manhom" />
+      <PropertyRef Name="manhom" />
     </Key>
-    <Property Name="Manhom" Type="nchar" MaxLength="20" Nullable="false" />
-    <Property Name="Mssv" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="manhom" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="mssv" Type="nchar" MaxLength="20" Nullable="false" />
   </EntityType>
   <EntityType Name="ptda">
     <Key>
-      <PropertyRef Name="Mada" />
-      <PropertyRef Name="Mssv" />
+      <PropertyRef Name="mada" />
+      <PropertyRef Name="mssv" />
     </Key>
-    <Property Name="Magv" Type="nchar" MaxLength="20" />
-    <Property Name="Mada" Type="nchar" MaxLength="20" Nullable="false" />
-    <Property Name="Mssv" Type="nchar" MaxLength="20" Nullable="false" />
-    <Property Name="Diem" Type="int" />
+    <Property Name="magv" Type="nchar" MaxLength="20" />
+    <Property Name="mada" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="mssv" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="diem" Type="int" />
   </EntityType>
   <EntityType Name="sinhvien">
     <Key>
-      <PropertyRef Name="Mssv" />
+      <PropertyRef Name="mssv" />
     </Key>
-    <Property Name="Mssv" Type="nchar" MaxLength="20" Nullable="false" />
-    <Property Name="Matkhau" Type="nchar" MaxLength="16" />
-    <Property Name="Hoten" Type="nvarchar" MaxLength="150" />
-    <Property Name="Email" Type="nchar" MaxLength="50" />
-    <Property Name="Gioitinh" Type="bit" />
-    <Property Name="Manhom" Type="nchar" MaxLength="20" />
+    <Property Name="mssv" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="matkhau" Type="nchar" MaxLength="16" />
+    <Property Name="hoten" Type="nvarchar" MaxLength="150" />
+    <Property Name="email" Type="nchar" MaxLength="50" />
+    <Property Name="gioitinh" Type="bit" />
+    <Property Name="manhom" Type="nchar" MaxLength="20" />
   </EntityType>
   <Association Name="FK_ptda_doan">
     <End Role="doan" Type="Self.doan" Multiplicity="1" />
     <End Role="ptda" Type="Self.ptda" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="doan">
-        <PropertyRef Name="Mada" />
+        <PropertyRef Name="mada" />
       </Principal>
       <Dependent Role="ptda">
-        <PropertyRef Name="Mada" />
+        <PropertyRef Name="mada" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -71,10 +71,10 @@
     <End Role="ptda" Type="Self.ptda" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="gvhd">
-        <PropertyRef Name="Magv" />
+        <PropertyRef Name="magv" />
       </Principal>
       <Dependent Role="ptda">
-        <PropertyRef Name="Magv" />
+        <PropertyRef Name="magv" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -83,10 +83,10 @@
     <End Role="ptda" Type="Self.ptda" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="sinhvien">
-        <PropertyRef Name="Mssv" />
+        <PropertyRef Name="mssv" />
       </Principal>
       <Dependent Role="ptda">
-        <PropertyRef Name="Mssv" />
+        <PropertyRef Name="mssv" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -95,10 +95,10 @@
     <End Role="sinhvien" Type="Self.sinhvien" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="nhom">
-        <PropertyRef Name="Manhom" />
+        <PropertyRef Name="manhom" />
       </Principal>
       <Dependent Role="sinhvien">
-        <PropertyRef Name="Manhom" />
+        <PropertyRef Name="manhom" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

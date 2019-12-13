@@ -2,63 +2,63 @@
 <Schema Namespace="QuanLyDoAnModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="admin">
     <Key>
-      <PropertyRef Name="Taikhoan" />
+      <PropertyRef Name="taikhoan" />
     </Key>
-    <Property Name="Taikhoan" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="Matkhau" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
+    <Property Name="taikhoan" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="matkhua" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="doan">
     <Key>
-      <PropertyRef Name="Mada" />
+      <PropertyRef Name="mada" />
     </Key>
-    <Property Name="Mada" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="Tenda" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Thoigianbd" Type="DateTime" Precision="0" />
-    <Property Name="Thoigiankt" Type="DateTime" Precision="0" />
+    <Property Name="mada" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="tenda" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="thoigianbd" Type="DateTime" Precision="0" />
+    <Property Name="thoigiankt" Type="DateTime" Precision="0" />
     <NavigationProperty Name="ptdas" Relationship="Self.FK_ptda_doan" FromRole="doan" ToRole="ptda" />
   </EntityType>
   <EntityType Name="gvhd">
     <Key>
-      <PropertyRef Name="Magv" />
+      <PropertyRef Name="magv" />
     </Key>
-    <Property Name="Magv" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="Matkhau" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
-    <Property Name="Hotengv" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="Mada" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="magv" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="matkhau" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
+    <Property Name="hotengv" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="mada" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="ptdas" Relationship="Self.FK_ptda_gvhd" FromRole="gvhd" ToRole="ptda" />
   </EntityType>
   <EntityType Name="nhom">
     <Key>
-      <PropertyRef Name="Manhom" />
+      <PropertyRef Name="manhom" />
     </Key>
-    <Property Name="Manhom" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="Mssv" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="manhom" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="mssv" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
     <NavigationProperty Name="sinhviens" Relationship="Self.FK_sinhvien_nhom1" FromRole="nhom" ToRole="sinhvien" />
   </EntityType>
   <EntityType Name="ptda">
     <Key>
-      <PropertyRef Name="Mada" />
-      <PropertyRef Name="Mssv" />
+      <PropertyRef Name="mada" />
+      <PropertyRef Name="mssv" />
     </Key>
-    <Property Name="Magv" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-    <Property Name="Mada" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="Mssv" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="Diem" Type="Int32" />
+    <Property Name="magv" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="mada" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="mssv" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="diem" Type="Int32" />
     <NavigationProperty Name="doan" Relationship="Self.FK_ptda_doan" FromRole="ptda" ToRole="doan" />
     <NavigationProperty Name="gvhd" Relationship="Self.FK_ptda_gvhd" FromRole="ptda" ToRole="gvhd" />
     <NavigationProperty Name="sinhvien" Relationship="Self.FK_ptda_sinhvien" FromRole="ptda" ToRole="sinhvien" />
   </EntityType>
   <EntityType Name="sinhvien">
     <Key>
-      <PropertyRef Name="Mssv" />
+      <PropertyRef Name="mssv" />
     </Key>
-    <Property Name="Mssv" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="Matkhau" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
-    <Property Name="Hoten" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="Email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-    <Property Name="Gioitinh" Type="Boolean" />
-    <Property Name="Manhom" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="mssv" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="matkhau" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
+    <Property Name="hoten" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="gioitinh" Type="Boolean" />
+    <Property Name="manhom" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="nhom" Relationship="Self.FK_sinhvien_nhom1" FromRole="sinhvien" ToRole="nhom" />
     <NavigationProperty Name="ptdas" Relationship="Self.FK_ptda_sinhvien" FromRole="sinhvien" ToRole="ptda" />
   </EntityType>
@@ -67,10 +67,10 @@
     <End Role="ptda" Type="Self.ptda" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="doan">
-        <PropertyRef Name="Mada" />
+        <PropertyRef Name="mada" />
       </Principal>
       <Dependent Role="ptda">
-        <PropertyRef Name="Mada" />
+        <PropertyRef Name="mada" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -79,10 +79,10 @@
     <End Role="ptda" Type="Self.ptda" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="gvhd">
-        <PropertyRef Name="Magv" />
+        <PropertyRef Name="magv" />
       </Principal>
       <Dependent Role="ptda">
-        <PropertyRef Name="Magv" />
+        <PropertyRef Name="magv" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -91,10 +91,10 @@
     <End Role="sinhvien" Type="Self.sinhvien" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="nhom">
-        <PropertyRef Name="Manhom" />
+        <PropertyRef Name="manhom" />
       </Principal>
       <Dependent Role="sinhvien">
-        <PropertyRef Name="Manhom" />
+        <PropertyRef Name="manhom" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -103,14 +103,14 @@
     <End Role="ptda" Type="Self.ptda" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="sinhvien">
-        <PropertyRef Name="Mssv" />
+        <PropertyRef Name="mssv" />
       </Principal>
       <Dependent Role="ptda">
-        <PropertyRef Name="Mssv" />
+        <PropertyRef Name="mssv" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="QuanLyDoAnEntities2" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="QuanLyDoAnEntities3" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="admins" EntityType="Self.admin" />
     <EntitySet Name="doans" EntityType="Self.doan" />
     <EntitySet Name="gvhds" EntityType="Self.gvhd" />

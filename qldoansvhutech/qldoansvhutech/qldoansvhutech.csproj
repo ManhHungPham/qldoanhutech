@@ -125,8 +125,9 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\1.jpg" />
+    <Content Include="Images\2.jpg" />
     <Content Include="Images\logo.png" />
-    <Content Include="Images\profile.png" />
     <Content Include="lib\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="lib\bootstrap\dist\css\bootstrap-theme.min.css" />
     <Content Include="lib\bootstrap\dist\css\bootstrap.css" />
@@ -145,10 +146,10 @@
     <Content Include="lib\jquery\dist\jquery.js" />
     <Content Include="lib\jquery\dist\jquery.min.js" />
     <Content Include="lib\jquery\LICENSE.txt" />
-    <Content Include="Models\Scripts\bootstrap.bundle.js" />
-    <Content Include="Models\Scripts\bootstrap.bundle.min.js" />
-    <Content Include="Models\Scripts\bootstrap.js" />
-    <Content Include="Models\Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\css\bootstrap-grid.css.map" />
     <Content Include="Content\css\bootstrap-grid.min.css.map" />
     <Content Include="Content\css\bootstrap-reboot.css.map" />
@@ -166,10 +167,10 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
-    <Content Include="Models\Scripts\bootstrap.bundle.js.map" />
-    <Content Include="Models\Scripts\bootstrap.bundle.min.js.map" />
-    <Content Include="Models\Scripts\bootstrap.js.map" />
-    <Content Include="Models\Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
     <Content Include="lib\bootstrap\.bower.json" />
     <Content Include="lib\bootstrap\dist\css\bootstrap-theme.css.map" />
     <Content Include="lib\bootstrap\dist\css\bootstrap-theme.min.css.map" />
@@ -185,34 +186,34 @@
     <Content Include="lib\jquery-validation\LICENSE.md" />
     <Content Include="lib\jquery\.bower.json" />
     <Content Include="lib\jquery\dist\jquery.min.map" />
-    <Content Include="Models\QLDA.dbml">
+    <Content Include="Models\dbQLDA.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>QLDA.designer.cs</LastGenOutput>
+      <LastGenOutput>dbQLDA.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Models\QLDA.dbml.layout">
-      <DependentUpon>QLDA.dbml</DependentUpon>
+    <None Include="Models\dbQLDA.dbml.layout">
+      <DependentUpon>dbQLDA.dbml</DependentUpon>
     </None>
-    <None Include="Models\Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Models\Scripts\demo\chart-area-demo.js" />
-    <Content Include="Models\Scripts\demo\chart-bar-demo.js" />
-    <Content Include="Models\Scripts\demo\chart-pie-demo.js" />
-    <Content Include="Models\Scripts\demo\datatables-demo.js" />
-    <Content Include="Models\Scripts\jquery-3.3.1.js" />
-    <Content Include="Models\Scripts\jquery-3.3.1.min.js" />
-    <Content Include="Models\Scripts\jquery-3.3.1.slim.js" />
-    <Content Include="Models\Scripts\jquery-3.3.1.slim.min.js" />
-    <Content Include="Models\Scripts\jquery.js" />
-    <Content Include="Models\Scripts\jquery.min.js" />
-    <Content Include="Models\Scripts\jquery.slim.js" />
-    <Content Include="Models\Scripts\jquery.slim.min.js" />
-    <Content Include="Models\Scripts\main.js" />
-    <Content Include="Models\Scripts\modernizr-2.8.3.js" />
-    <Content Include="Models\Scripts\popper.min.js" />
-    <Content Include="Models\Scripts\sb-admin.js" />
-    <Content Include="Models\Scripts\sb-admin.min.js" />
-    <Content Include="Models\Scripts\site.js" />
-    <Content Include="Models\Scripts\site.min.js" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\demo\chart-area-demo.js" />
+    <Content Include="Scripts\demo\chart-bar-demo.js" />
+    <Content Include="Scripts\demo\chart-pie-demo.js" />
+    <Content Include="Scripts\demo\datatables-demo.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery.slim.js" />
+    <Content Include="Scripts\jquery.slim.min.js" />
+    <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\sb-admin.js" />
+    <Content Include="Scripts\sb-admin.min.js" />
+    <Content Include="Scripts\site.js" />
+    <Content Include="Scripts\site.min.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.js" />
@@ -1806,8 +1807,8 @@
     <Content Include="vendor\jquery\jquery.slim.min.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Models\Scripts\jquery.min.map" />
-    <Content Include="Models\Scripts\jquery.slim.min.map" />
+    <Content Include="Scripts\jquery.min.map" />
+    <Content Include="Scripts\jquery.slim.min.map" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.js.map" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
     <Content Include="vendor\bootstrap\js\bootstrap.js.map" />
@@ -1954,6 +1955,10 @@
     <Content Include="vendor\jquery\jquery.slim.min.map" />
     <Content Include="Views\Shared\LayoutGV.cshtml" />
     <Content Include="Views\GiangVien\Index.cshtml" />
+    <Content Include="Views\GiangVien\QuanLySinhVien.cshtml" />
+    <Content Include="Views\GiangVien\ThongTinDoAn.cshtml" />
+    <Content Include="Views\GiangVien\NhomDoAn.cshtml" />
+    <Content Include="Views\GiangVien\ChamDiemDoAn.cshtml" />
     <Content Include="Views\GiangVien\PhanChiaCongViec.cshtml" />
     <Content Include="Views\Shared\LayoutSV.cshtml" />
     <Content Include="Views\SinhVien\Dangkydoan.cshtml" />
@@ -1964,17 +1969,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DangnhapController.cs" />
     <Compile Include="Controllers\GiangVienController.cs" />
     <Compile Include="Controllers\SinhVienController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\QLDA.designer.cs">
+    <Compile Include="Models\dbQLDA.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QLDA.dbml</DependentUpon>
+      <DependentUpon>dbQLDA.dbml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1990,22 +1994,11 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Models\Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Models\Scripts\jquery-3.3.1.min.map" />
-    <Content Include="Views\SinhVien\Thongtinsinhvien.cshtml" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\GiangVien\BaoCao.cshtml" />
-    <Content Include="Views\GiangVien\DangNhap.cshtml" />
-    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\ThongTin.cshtml" />
-    <Content Include="Views\Admin\DanhSachGiangVien.cshtml" />
-    <Content Include="Views\Admin\PhanChiaHuongDan.cshtml" />
-    <Content Include="Views\Admin\DanhSachSinhVien.cshtml" />
-    <Content Include="Views\Admin\QuanLyDoAn.cshtml" />
-    <Content Include="Views\GiangVien\QuanLySinhVien.cshtml" />
-    <Content Include="Views\GiangVien\ThongTinDoAn.cshtml" />
-    <Content Include="Views\GiangVien\NhomDoAn.cshtml" />
-    <Content Include="Views\GiangVien\PhuTrachDoAn.cshtml" />
+    <Content Include="Views\SinhVien\ThongTinSinhVien.cshtml" />
+    <Content Include="Views\SinhVien\SuaSV.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

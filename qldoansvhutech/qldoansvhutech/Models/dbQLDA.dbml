@@ -10,8 +10,7 @@
     <Type Name="Doan">
       <Column Name="Mada" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Tenda" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Thoigianbd" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="Thoigiankt" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Mota" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="Doan_Ptda" Member="Ptdas" ThisKey="Mada" OtherKey="Mada" Type="Ptda" />
     </Type>
   </Table>

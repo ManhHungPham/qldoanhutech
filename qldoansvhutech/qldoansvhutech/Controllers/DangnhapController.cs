@@ -10,7 +10,7 @@ namespace qldoansvhutech.Controllers
    
     public class DangnhapController : Controller
     {
-        QLDADataContext db = new QLDADataContext();
+        dbQLDADataContext db = new dbQLDADataContext();
         // GET: Dangnhap
         public ActionResult Index()
         {
@@ -24,22 +24,24 @@ namespace qldoansvhutech.Controllers
         [HttpPost]
         public ActionResult DangNhap(FormCollection collection)
         {
-            var mssv = collection["mssv"];
-            var matkhau = collection["matkhau"];
-            if(String.IsNullOrEmpty(mssv))
+            var Taikhoan = collection["Taikhoan"];
+            var Matkhau = collection["Matkhau"];
+            if(String.IsNullOrEmpty(Taikhoan))
             {
                 ViewData["Loi1"] = "Phải nhập mssv";
             }
-            else if (String.IsNullOrEmpty(matkhau))
+            else if (String.IsNullOrEmpty(Matkhau))
             {
                 ViewData["Loi2"] = "Phải nhập mật khẩu ";
             }
             else
             {
-                sinhvien sv = db.sinhviens.FirstOrDefault(n => n.mssv == mssv && n.matkhau == matkhau);
+                Sinhvien sv = db.Sinhviens.FirstOrDefault(n => n.Taikhoan.CompareTo(Taikhoan) == 0 && n.Matkhau.CompareTo(Matkhau)==0);
                 if (sv != null)
                 {
-                    return RedirectToAction("Thongtinsinhvien", "SinhVien");
+                    Session["Taikhoan"] = sv;
+                    return RedirectToAction("ThongTinSinhVien", "SinhVien");
+                    
                 }
                 else
                     ViewBag.ThongBao = "MSSV hoặc mật khẩu không chính xác !";
@@ -48,10 +50,10 @@ namespace qldoansvhutech.Controllers
         }
         public PartialViewResult ID()
         {
-            if(Session["mssv"]!=null)
+            if(Session["Mssv"]!=null)
             {
-                sinhvien sv = (sinhvien)Session["mssv"];
-                ViewBag.ThongBao = sv.mssv;
+                Sinhvien sv = (Sinhvien)Session["Mssv"];
+                ViewBag.ThongBao = sv.Hoten;
             }
             return PartialView();
         }

@@ -225,9 +225,7 @@ namespace qldoansvhutech.Models
 		
 		private string _Tenda;
 		
-		private System.Nullable<System.DateTime> _Thoigianbd;
-		
-		private System.Nullable<System.DateTime> _Thoigiankt;
+		private string _Mota;
 		
 		private EntitySet<Ptda> _Ptdas;
 		
@@ -239,10 +237,8 @@ namespace qldoansvhutech.Models
     partial void OnMadaChanged();
     partial void OnTendaChanging(string value);
     partial void OnTendaChanged();
-    partial void OnThoigianbdChanging(System.Nullable<System.DateTime> value);
-    partial void OnThoigianbdChanged();
-    partial void OnThoigianktChanging(System.Nullable<System.DateTime> value);
-    partial void OnThoigianktChanged();
+    partial void OnMotaChanging(string value);
+    partial void OnMotaChanged();
     #endregion
 		
 		public Doan()
@@ -291,42 +287,22 @@ namespace qldoansvhutech.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Thoigianbd", DbType="Date")]
-		public System.Nullable<System.DateTime> Thoigianbd
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mota", DbType="NVarChar(MAX)")]
+		public string Mota
 		{
 			get
 			{
-				return this._Thoigianbd;
+				return this._Mota;
 			}
 			set
 			{
-				if ((this._Thoigianbd != value))
+				if ((this._Mota != value))
 				{
-					this.OnThoigianbdChanging(value);
+					this.OnMotaChanging(value);
 					this.SendPropertyChanging();
-					this._Thoigianbd = value;
-					this.SendPropertyChanged("Thoigianbd");
-					this.OnThoigianbdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Thoigiankt", DbType="Date")]
-		public System.Nullable<System.DateTime> Thoigiankt
-		{
-			get
-			{
-				return this._Thoigiankt;
-			}
-			set
-			{
-				if ((this._Thoigiankt != value))
-				{
-					this.OnThoigianktChanging(value);
-					this.SendPropertyChanging();
-					this._Thoigiankt = value;
-					this.SendPropertyChanged("Thoigiankt");
-					this.OnThoigianktChanged();
+					this._Mota = value;
+					this.SendPropertyChanged("Mota");
+					this.OnMotaChanged();
 				}
 			}
 		}
