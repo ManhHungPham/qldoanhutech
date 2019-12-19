@@ -8,27 +8,46 @@
   </Table>
   <Table Name="dbo.Doan" Member="Doans">
     <Type Name="Doan">
-      <Column Name="Mada" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Mada" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Tenda" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Mota" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="Doan_Ptda" Member="Ptdas" ThisKey="Mada" OtherKey="Mada" Type="Ptda" />
+      <Column Name="Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Magv" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Association Name="Gvhd_Doan" Member="Gvhd" ThisKey="Id" OtherKey="Id" Type="Gvhd" IsForeignKey="true" />
+      <Association Name="Sinhvien_Doan" Member="Sinhvien" ThisKey="Id" OtherKey="Id" Type="Sinhvien" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Gvhd" Member="Gvhds">
     <Type Name="Gvhd">
-      <Column Name="Magv" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Matkhau" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Magv" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Matkhau" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="Hotengv" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
       <Column Name="Email" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Column Name="Mada" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Gvhd_Ptda" Member="Ptdas" ThisKey="Magv" OtherKey="Mada" Type="Ptda" />
+      <Column Name="Role" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Gvhd_Doan" Member="Doans" ThisKey="Id" OtherKey="Id" Type="Doan" />
     </Type>
   </Table>
-  <Table Name="dbo.Nhom" Member="Nhoms">
-    <Type Name="Nhom">
-      <Column Name="Manhom" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Tennhom" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="Sinhvien_Nhom" Member="Sinhvien" ThisKey="Manhom" OtherKey="Id" Type="Sinhvien" IsForeignKey="true" />
+  <Table Name="dbo.Role" Member="Roles">
+    <Type Name="Role">
+      <Column Name="MaRole" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenRole" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Sinhvien" Member="Sinhviens">
+    <Type Name="Sinhvien">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Hoten" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Matkhau" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="Gioitinh" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Mssv" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="Sdt" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Hinh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Role" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Magv" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Association Name="Sinhvien_Doan" Member="Doans" ThisKey="Id" OtherKey="Id" Type="Doan" />
+      <Association Name="Sinhvien_Nhom" Member="Nhoms" ThisKey="Id" OtherKey="Id" Type="Nhom" />
     </Type>
   </Table>
   <Table Name="dbo.Ptda" Member="Ptdas">
@@ -37,24 +56,14 @@
       <Column Name="Mada" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Mssv" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Diem" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Doan_Ptda" Member="Doan" ThisKey="Mada" OtherKey="Mada" Type="Doan" IsForeignKey="true" />
-      <Association Name="Gvhd_Ptda" Member="Gvhd" ThisKey="Mada" OtherKey="Magv" Type="Gvhd" IsForeignKey="true" />
-      <Association Name="Sinhvien_Ptda" Member="Sinhvien" ThisKey="Mssv" OtherKey="Id" Type="Sinhvien" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Sinhvien" Member="Sinhviens">
-    <Type Name="Sinhvien">
-      <Column Name="Hoten" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Matkhau" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Email" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
-      <Column Name="Gioitinh" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Manhom" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Taikhoan" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
-      <Column Name="Sdt" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="Hinh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Association Name="Sinhvien_Nhom" Member="Nhom" ThisKey="Id" OtherKey="Manhom" Type="Nhom" Cardinality="One" />
-      <Association Name="Sinhvien_Ptda" Member="Ptdas" ThisKey="Id" OtherKey="Mssv" Type="Ptda" />
+  <Table Name="dbo.Nhom" Member="Nhoms">
+    <Type Name="Nhom">
+      <Column Name="Manhom" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Tennhom" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Sinhvien_Nhom" Member="Sinhvien" ThisKey="Id" OtherKey="Id" Type="Sinhvien" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

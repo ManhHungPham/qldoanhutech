@@ -1,81 +1,88 @@
-﻿
+﻿@model IEnumerable<qldoansvhutech.Models.Sinhvien>
+
 @{
     ViewBag.Title = "QuanLySinhVien";
     Layout = "~/Views/Shared/LayoutGV.cshtml";
+    <script src="~/Scripts/jquery.min.js"></script>
 }
+<div class="container-fluid" style="margin-top:30px;width:70%;">
+    <h1>QUẢN LÝ SINH VIÊN</h1>
+    <a href="@Url.Action("ThemSinhVien","GiangVien")" class="btn btn-danger" style="margin-bottom:10px">Thêm mới sinh viên</a>
+    <center>
+        <div class="row">
+            <div class="col-12">
+                <input class="form-control" id="myInput" type="text" placeholder="Search..">
+                <table style="margin-top:20px" class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Mã số sinh viên:
+                            </th>
+                            <th>
+                                Họ tên sinh viên:
+                            </th>
+                            <th>
+                                Giới tính:
+                            </th>
+                            <th>
+                                Email:
+                            </th>
+                            <th>
+                                Số điện thoại:
+                            </th>
+                            <th>
+                                Chức năng
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
 
-<h2>QuanLySinhVien</h2>
-<a href="#">
-    <span class="pull-left"><button class="btn btn-info btn-sm">Thêm mới</button></span>
-</a>
-<!-- /.box-header -->
-<div class="col-xs-12">
-    <div class="box"
-        <div class="box-header">
-            <div class="box-tools">
-                <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-                    <div class="input-group-btn">
-                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                    </div>
-                </div>
+                    <tbody id="myTable">
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Mssv)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Hoten)
+                            </td>
+                            <td>
+                                @if (item.Gioitinh == true)
+                                {
+                                    <p>Nam</p>
+                                }
+                                else
+                                {
+                                    <p>Nữ</p>
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Sdt)
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" href="@Url.Action("XoaSinhVien","GiangVien",new { id = item.Id})" style="color:white">Xóa</a>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+
+                </table>
             </div>
         </div>
-        <!-- /.box-header -->
-        <div class="box-body table-responsive no-padding">
-            <table class="table table-hover">
-                <tbody>
-                    <tr>
-                        <th>MSSV</th>
-                        <th>Họ và tên</th>
-                        <th>Giới tính</th>
-                        <th>NgaySinh</th>
-                        <th>Email</th>
-                        <th>Thay Đổi</th>
-                    </tr>
-
-                    <tr>
-                        <td>1811090321</td>
-                        <td>Nguyễn Văn A</td>
-                        <td> Nam </td>
-                        <td>10/01</td>
-                        <td>NNT@gmail.com</td>
-                        <td>
-
-                            <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_edit_user_5"><i class="fa fa-pencil" aria-hidden="true"></i>Sửa</a>
-                            <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_edit_user_5"><i class="fa fa-trash-o" aria-hidden="true"></i>Xóa</a>
-
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>1811090322</td>
-                        <td>Nguyễn Văn B</td>
-                        <td> Nam </td>
-                        <td>10/01</td>
-                        <td>NNT1@gmail.com</td>
-                        <td>
-                            <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_edit_user_5"><i class="fa fa-pencil" aria-hidden="true"></i>Sửa</a>
-                            <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_edit_user_5"><i class="fa fa-trash-o" aria-hidden="true"></i>Xóa</a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>1811090322</td>
-                        <td>Nguyễn Thị C</td>
-                        <td> Nữ </td>
-                        <td>10/10</td>
-                        <td>ntc@gmail.com</td>
-                        <td>
-                            <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_edit_user_5"><i class="fa fa-pencil" aria-hidden="true"></i>Sửa</a>
-                            <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_edit_user_5"><i class="fa fa-trash-o" aria-hidden="true"></i>Xóa</a>
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
-        </div>
-        <!-- /.box-body -->
-    </div>
-    <!-- /.box -->
+    </center>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>

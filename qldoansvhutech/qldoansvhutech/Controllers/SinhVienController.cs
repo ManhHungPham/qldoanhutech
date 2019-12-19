@@ -16,45 +16,50 @@ namespace qldoansvhutech.Controllers
         {  
             return View();
         }
-        public ActionResult SuaSV()
-        {
-            Sinhvien sv = (Sinhvien)Session["Taikhoan"];
-            return View(sv);
-        }
         [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult SuaSV(Sinhvien sinhvien)
+        public ActionResult SuaSV(FormCollection f)
         {
-            if (ModelState.IsValid)
+            var id = f["txtId"].ToString();
+            //Sinhvien sv = (Sinhvien)Session["Taikhoan"];
+            Sinhvien sv = db.Sinhviens.Where(m=>m.Id == int.Parse(id)).SingleOrDefault();
+            sv.Hoten = f["txtHoTen"].ToString();
+            sv.Email = f["txtEmail"].ToString();
+            sv.Sdt =  f["txtSDT"].ToString();
+            string gt = f["chkGT"].ToString();
+            bool gtinh = false;
+            if(gt.CompareTo("1") == 0)
             {
-                Sinhvien sv = (Sinhvien)Session["Taikhoan"];
-                sv.Hoten = sinhvien.Hoten;
-                sv.Gioitinh = sinhvien.Gioitinh;
-                sv.Sdt = sinhvien.Sdt;
-                sv.Email = sinhvien.Email;
-                db.SubmitChanges();
-                UpdateModel(sv);
-                return RedirectToAction("ThongTinSinhVien");
+                gtinh = true;
             }
-            return View(sinhvien);
+            sv.Gioitinh = gtinh;
+            db.SubmitChanges();
+            return RedirectToAction("ThongTinSinhVien");
         }
         public ActionResult Dangkydoan()
         {
-
+            var dsGiangVien = db.Gvhds.ToList();
+            ViewBag.DSGV = dsGiangVien;
+            Sinhvien sv = (Sinhvien) Session["Mssv"];
+            ViewBag.Id = sv.Id;
             return View();
         }
-        [HttpPost]
-        public ActionResult Dangkydoan(Doan doan)
-        {
-            ViewBag.Mada = new SelectList(db.Doans.ToList().OrderBy(n => n.Tenda), "Mada", "Tenda");
-            if (ModelState.IsValid)
-            {
-                db.Doans.InsertOnSubmit(doan);
-                db.SubmitChanges();
-            }
-            return RedirectToAction("Dangkydoan");
-        }
 
+        [HttpPost]
+        public ActionResult Dangkydoan(FormCollection f)
+        {
+            Doan da = new Doan();
+            da.Id = int.Parse(f["txtId"].ToString());
+            da.Tenda = f["txtTenDoAn"].ToString();
+            da.Mota = f["txtMoTa"].ToString();
+            da.Magv = f["radMaGV"].ToString();
+            db.Doans.InsertOnSubmit(da);
+            db.SubmitChanges();
+            return RedirectToAction("ThongTinSinhVien");
+        }
+        public ActionResult Details()
+        {
+            return View();
+        }
         public ActionResult Dangkynhom()
         {
             return View();
@@ -62,6 +67,13 @@ namespace qldoansvhutech.Controllers
         public ActionResult Nhom()
         {
             return View();
+        }
+
+        public ActionResult ThongTinDoAn()
+        {
+            Sinhvien sv = (Sinhvien)Session["Mssv"];
+            var doAn = db.Doans.Where(n => n.Id == sv.Id);
+            return View(doAn);
         }
     }
 }

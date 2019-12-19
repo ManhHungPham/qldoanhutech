@@ -1,9 +1,11 @@
-﻿@model IEnumerable<qldoansvhutech.Models.Doan>
+﻿@model IEnumerable < qldoansvhutech.Models.Doan>
+
 
 @{
     ViewBag.Title = "ThongTinDoAn";
     Layout = "~/Views/Shared/LayoutSV.cshtml";
 }
+
 <div class="container-fluid" style="margin-top:30px;width:70%;">
     <center>
         <div class="row">
@@ -22,6 +24,7 @@
                         </th>
                         <th></th>
                     </tr>
+
                     @foreach (var item in Model)
                     {
                         <tr>
@@ -42,5 +45,3 @@
         </div>
     </center>
 </div>
-
-

@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <title>Giảng Viên - Quản lý đồ án</title>
     <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
-    <link href="~/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet" />
+    @*<link href="~/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet" />*@
     <link href="~/Content/css/sb-admin.css" rel="stylesheet" />
 </head>
 <body id="page-top">
@@ -65,9 +65,9 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="pagesDropdown">
 
-                    <a href="@Url.Action("ThongTinDoAn","GiangVien")" class="dropdown-item">Đăng ký</a>
+                    <a href="@Url.Action("Dangkydoan","SinhVien")" class="dropdown-item">Đăng ký</a>
                     <a href="@Url.Action("Nhom","SinhVien")" class="dropdown-item">Nhóm</a>
-                    <a href="@Url.Action("NhomDoAn","GiangVien")" class="dropdown-item">Thông tin đồ án</a>
+                    <a href="@Url.Action("ThongTinDoAn","SinhVien")" class="dropdown-item">Thông tin đồ án</a>
 
                     <div class="dropdown-divider"></div>
                 </div>

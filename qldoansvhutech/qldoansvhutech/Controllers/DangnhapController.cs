@@ -24,9 +24,9 @@ namespace qldoansvhutech.Controllers
         [HttpPost]
         public ActionResult DangNhap(FormCollection collection)
         {
-            var Taikhoan = collection["Taikhoan"];
+            var Mssv = collection["Taikhoan"];
             var Matkhau = collection["Matkhau"];
-            if(String.IsNullOrEmpty(Taikhoan))
+            if(String.IsNullOrEmpty(Mssv))
             {
                 ViewData["Loi1"] = "Phải nhập mssv";
             }
@@ -36,18 +36,18 @@ namespace qldoansvhutech.Controllers
             }
             else
             {
-                Sinhvien sv = db.Sinhviens.FirstOrDefault(n => n.Taikhoan.CompareTo(Taikhoan) == 0 && n.Matkhau.CompareTo(Matkhau)==0);
+                Sinhvien sv = db.Sinhviens.FirstOrDefault(n => n.Mssv.CompareTo(Mssv) == 0 && n.Matkhau.CompareTo(Matkhau)==0);
                 if (sv != null)
                 {
-                    Session["Taikhoan"] = sv;
+                    Session["Mssv"] = sv;
                     return RedirectToAction("ThongTinSinhVien", "SinhVien");
-                    
                 }
                 else
                     ViewBag.ThongBao = "MSSV hoặc mật khẩu không chính xác !";
             }
+            
             return View();
-        }
+        }       
         public PartialViewResult ID()
         {
             if(Session["Mssv"]!=null)
@@ -58,5 +58,25 @@ namespace qldoansvhutech.Controllers
             return PartialView();
         }
 
+        public ActionResult DangNhapGiangVien()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DangNhapGiangVien(FormCollection f)
+        {
+            string username = f["txtUsername"].ToString();
+            string password = f["txtPassword"].ToString();
+            Gvhd gv = db.Gvhds.Where(n=>n.Magv == username && n.Matkhau == password).SingleOrDefault();
+            if (gv != null)
+            {
+                Session["GiangVien"] = gv;
+                return RedirectToAction("Index", "GiangVien");
+            }
+            else
+                ViewBag.ThongBao = "Tên đăng nhập hoặc mật khẩu không chính xác !";
+            return View();
+        }
     }
 }

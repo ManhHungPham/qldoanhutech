@@ -1955,13 +1955,10 @@
     <Content Include="vendor\jquery\jquery.slim.min.map" />
     <Content Include="Views\Shared\LayoutGV.cshtml" />
     <Content Include="Views\GiangVien\Index.cshtml" />
-    <Content Include="Views\GiangVien\QuanLySinhVien.cshtml" />
-    <Content Include="Views\GiangVien\ThongTinDoAn.cshtml" />
     <Content Include="Views\GiangVien\NhomDoAn.cshtml" />
     <Content Include="Views\GiangVien\ChamDiemDoAn.cshtml" />
     <Content Include="Views\GiangVien\PhanChiaCongViec.cshtml" />
     <Content Include="Views\Shared\LayoutSV.cshtml" />
-    <Content Include="Views\SinhVien\Dangkydoan.cshtml" />
     <Content Include="Views\SinhVien\Dangkynhom.cshtml" />
     <Content Include="Views\SinhVien\Nhom.cshtml" />
     <Content Include="Views\Dangnhap\ID.cshtml" />
@@ -1998,7 +1995,14 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\GiangVien\BaoCao.cshtml" />
     <Content Include="Views\SinhVien\ThongTinSinhVien.cshtml" />
-    <Content Include="Views\SinhVien\SuaSV.cshtml" />
+    <Content Include="Views\SinhVien\Details.cshtml" />
+    <Content Include="Views\SinhVien\Dangkydoan.cshtml" />
+    <Content Include="Views\Shared\_LayoutUser.cshtml" />
+    <Content Include="Views\GiangVien\ThongTinDoAn.cshtml" />
+    <Content Include="Views\SinhVien\ThongTinDoAn.cshtml" />
+    <Content Include="Views\Dangnhap\DangNhapGiangVien.cshtml" />
+    <Content Include="Views\GiangVien\QuanLySinhVien.cshtml" />
+    <Content Include="Views\GiangVien\ThemSinhVien.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

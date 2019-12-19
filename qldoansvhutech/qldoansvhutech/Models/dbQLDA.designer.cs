@@ -39,15 +39,18 @@ namespace qldoansvhutech.Models
     partial void InsertGvhd(Gvhd instance);
     partial void UpdateGvhd(Gvhd instance);
     partial void DeleteGvhd(Gvhd instance);
-    partial void InsertNhom(Nhom instance);
-    partial void UpdateNhom(Nhom instance);
-    partial void DeleteNhom(Nhom instance);
-    partial void InsertPtda(Ptda instance);
-    partial void UpdatePtda(Ptda instance);
-    partial void DeletePtda(Ptda instance);
+    partial void InsertRole(Role instance);
+    partial void UpdateRole(Role instance);
+    partial void DeleteRole(Role instance);
     partial void InsertSinhvien(Sinhvien instance);
     partial void UpdateSinhvien(Sinhvien instance);
     partial void DeleteSinhvien(Sinhvien instance);
+    partial void InsertPtda(Ptda instance);
+    partial void UpdatePtda(Ptda instance);
+    partial void DeletePtda(Ptda instance);
+    partial void InsertNhom(Nhom instance);
+    partial void UpdateNhom(Nhom instance);
+    partial void DeleteNhom(Nhom instance);
     #endregion
 		
 		public dbQLDADataContext() : 
@@ -104,11 +107,19 @@ namespace qldoansvhutech.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Nhom> Nhoms
+		public System.Data.Linq.Table<Role> Roles
 		{
 			get
 			{
-				return this.GetTable<Nhom>();
+				return this.GetTable<Role>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Sinhvien> Sinhviens
+		{
+			get
+			{
+				return this.GetTable<Sinhvien>();
 			}
 		}
 		
@@ -120,11 +131,11 @@ namespace qldoansvhutech.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Sinhvien> Sinhviens
+		public System.Data.Linq.Table<Nhom> Nhoms
 		{
 			get
 			{
-				return this.GetTable<Sinhvien>();
+				return this.GetTable<Nhom>();
 			}
 		}
 	}
@@ -227,7 +238,13 @@ namespace qldoansvhutech.Models
 		
 		private string _Mota;
 		
-		private EntitySet<Ptda> _Ptdas;
+		private System.Nullable<int> _Id;
+		
+		private string _Magv;
+		
+		private EntityRef<Gvhd> _Gvhd;
+		
+		private EntityRef<Sinhvien> _Sinhvien;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -239,15 +256,20 @@ namespace qldoansvhutech.Models
     partial void OnTendaChanged();
     partial void OnMotaChanging(string value);
     partial void OnMotaChanged();
+    partial void OnIdChanging(System.Nullable<int> value);
+    partial void OnIdChanged();
+    partial void OnMagvChanging(string value);
+    partial void OnMagvChanged();
     #endregion
 		
 		public Doan()
 		{
-			this._Ptdas = new EntitySet<Ptda>(new Action<Ptda>(this.attach_Ptdas), new Action<Ptda>(this.detach_Ptdas));
+			this._Gvhd = default(EntityRef<Gvhd>);
+			this._Sinhvien = default(EntityRef<Sinhvien>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mada", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mada", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int Mada
 		{
 			get
@@ -307,16 +329,115 @@ namespace qldoansvhutech.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Doan_Ptda", Storage="_Ptdas", ThisKey="Mada", OtherKey="Mada")]
-		public EntitySet<Ptda> Ptdas
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int")]
+		public System.Nullable<int> Id
 		{
 			get
 			{
-				return this._Ptdas;
+				return this._Id;
 			}
 			set
 			{
-				this._Ptdas.Assign(value);
+				if ((this._Id != value))
+				{
+					if ((this._Gvhd.HasLoadedOrAssignedValue || this._Sinhvien.HasLoadedOrAssignedValue))
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Magv", DbType="VarChar(5)")]
+		public string Magv
+		{
+			get
+			{
+				return this._Magv;
+			}
+			set
+			{
+				if ((this._Magv != value))
+				{
+					this.OnMagvChanging(value);
+					this.SendPropertyChanging();
+					this._Magv = value;
+					this.SendPropertyChanged("Magv");
+					this.OnMagvChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Gvhd_Doan", Storage="_Gvhd", ThisKey="Id", OtherKey="Id", IsForeignKey=true)]
+		public Gvhd Gvhd
+		{
+			get
+			{
+				return this._Gvhd.Entity;
+			}
+			set
+			{
+				Gvhd previousValue = this._Gvhd.Entity;
+				if (((previousValue != value) 
+							|| (this._Gvhd.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Gvhd.Entity = null;
+						previousValue.Doans.Remove(this);
+					}
+					this._Gvhd.Entity = value;
+					if ((value != null))
+					{
+						value.Doans.Add(this);
+						this._Id = value.Id;
+					}
+					else
+					{
+						this._Id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Gvhd");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Sinhvien_Doan", Storage="_Sinhvien", ThisKey="Id", OtherKey="Id", IsForeignKey=true)]
+		public Sinhvien Sinhvien
+		{
+			get
+			{
+				return this._Sinhvien.Entity;
+			}
+			set
+			{
+				Sinhvien previousValue = this._Sinhvien.Entity;
+				if (((previousValue != value) 
+							|| (this._Sinhvien.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Sinhvien.Entity = null;
+						previousValue.Doans.Remove(this);
+					}
+					this._Sinhvien.Entity = value;
+					if ((value != null))
+					{
+						value.Doans.Add(this);
+						this._Id = value.Id;
+					}
+					else
+					{
+						this._Id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Sinhvien");
+				}
 			}
 		}
 		
@@ -339,18 +460,6 @@ namespace qldoansvhutech.Models
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-		
-		private void attach_Ptdas(Ptda entity)
-		{
-			this.SendPropertyChanging();
-			entity.Doan = this;
-		}
-		
-		private void detach_Ptdas(Ptda entity)
-		{
-			this.SendPropertyChanging();
-			entity.Doan = null;
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Gvhd")]
@@ -359,7 +468,9 @@ namespace qldoansvhutech.Models
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _Magv;
+		private int _Id;
+		
+		private string _Magv;
 		
 		private string _Matkhau;
 		
@@ -367,15 +478,17 @@ namespace qldoansvhutech.Models
 		
 		private string _Email;
 		
-		private System.Nullable<int> _Mada;
+		private System.Nullable<int> _Role;
 		
-		private EntitySet<Ptda> _Ptdas;
+		private EntitySet<Doan> _Doans;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnMagvChanging(int value);
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnMagvChanging(string value);
     partial void OnMagvChanged();
     partial void OnMatkhauChanging(string value);
     partial void OnMatkhauChanged();
@@ -383,18 +496,38 @@ namespace qldoansvhutech.Models
     partial void OnHotengvChanged();
     partial void OnEmailChanging(string value);
     partial void OnEmailChanged();
-    partial void OnMadaChanging(System.Nullable<int> value);
-    partial void OnMadaChanged();
+    partial void OnRoleChanging(System.Nullable<int> value);
+    partial void OnRoleChanged();
     #endregion
 		
 		public Gvhd()
 		{
-			this._Ptdas = new EntitySet<Ptda>(new Action<Ptda>(this.attach_Ptdas), new Action<Ptda>(this.detach_Ptdas));
+			this._Doans = new EntitySet<Doan>(new Action<Doan>(this.attach_Doans), new Action<Doan>(this.detach_Doans));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Magv", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Magv
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Magv", DbType="VarChar(5) NOT NULL", CanBeNull=false)]
+		public string Magv
 		{
 			get
 			{
@@ -413,7 +546,7 @@ namespace qldoansvhutech.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Matkhau", DbType="NChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Matkhau", DbType="VarChar(10)")]
 		public string Matkhau
 		{
 			get
@@ -473,36 +606,36 @@ namespace qldoansvhutech.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mada", DbType="Int")]
-		public System.Nullable<int> Mada
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Role", DbType="Int")]
+		public System.Nullable<int> Role
 		{
 			get
 			{
-				return this._Mada;
+				return this._Role;
 			}
 			set
 			{
-				if ((this._Mada != value))
+				if ((this._Role != value))
 				{
-					this.OnMadaChanging(value);
+					this.OnRoleChanging(value);
 					this.SendPropertyChanging();
-					this._Mada = value;
-					this.SendPropertyChanged("Mada");
-					this.OnMadaChanged();
+					this._Role = value;
+					this.SendPropertyChanged("Role");
+					this.OnRoleChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Gvhd_Ptda", Storage="_Ptdas", ThisKey="Magv", OtherKey="Mada")]
-		public EntitySet<Ptda> Ptdas
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Gvhd_Doan", Storage="_Doans", ThisKey="Id", OtherKey="Id")]
+		public EntitySet<Doan> Doans
 		{
 			get
 			{
-				return this._Ptdas;
+				return this._Doans;
 			}
 			set
 			{
-				this._Ptdas.Assign(value);
+				this._Doans.Assign(value);
 			}
 		}
 		
@@ -526,374 +659,80 @@ namespace qldoansvhutech.Models
 			}
 		}
 		
-		private void attach_Ptdas(Ptda entity)
+		private void attach_Doans(Doan entity)
 		{
 			this.SendPropertyChanging();
 			entity.Gvhd = this;
 		}
 		
-		private void detach_Ptdas(Ptda entity)
+		private void detach_Doans(Doan entity)
 		{
 			this.SendPropertyChanging();
 			entity.Gvhd = null;
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Nhom")]
-	public partial class Nhom : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Role")]
+	public partial class Role : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _Manhom;
+		private int _MaRole;
 		
-		private string _Tennhom;
-		
-		private EntityRef<Sinhvien> _Sinhvien;
+		private string _TenRole;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnManhomChanging(int value);
-    partial void OnManhomChanged();
-    partial void OnTennhomChanging(string value);
-    partial void OnTennhomChanged();
+    partial void OnMaRoleChanging(int value);
+    partial void OnMaRoleChanged();
+    partial void OnTenRoleChanging(string value);
+    partial void OnTenRoleChanged();
     #endregion
 		
-		public Nhom()
+		public Role()
 		{
-			this._Sinhvien = default(EntityRef<Sinhvien>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Manhom", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Manhom
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaRole", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MaRole
 		{
 			get
 			{
-				return this._Manhom;
+				return this._MaRole;
 			}
 			set
 			{
-				if ((this._Manhom != value))
+				if ((this._MaRole != value))
 				{
-					if (this._Sinhvien.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnManhomChanging(value);
+					this.OnMaRoleChanging(value);
 					this.SendPropertyChanging();
-					this._Manhom = value;
-					this.SendPropertyChanged("Manhom");
-					this.OnManhomChanged();
+					this._MaRole = value;
+					this.SendPropertyChanged("MaRole");
+					this.OnMaRoleChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tennhom", DbType="NVarChar(50)")]
-		public string Tennhom
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenRole", DbType="NVarChar(50)")]
+		public string TenRole
 		{
 			get
 			{
-				return this._Tennhom;
+				return this._TenRole;
 			}
 			set
 			{
-				if ((this._Tennhom != value))
+				if ((this._TenRole != value))
 				{
-					this.OnTennhomChanging(value);
+					this.OnTenRoleChanging(value);
 					this.SendPropertyChanging();
-					this._Tennhom = value;
-					this.SendPropertyChanged("Tennhom");
-					this.OnTennhomChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Sinhvien_Nhom", Storage="_Sinhvien", ThisKey="Manhom", OtherKey="Id", IsForeignKey=true)]
-		public Sinhvien Sinhvien
-		{
-			get
-			{
-				return this._Sinhvien.Entity;
-			}
-			set
-			{
-				Sinhvien previousValue = this._Sinhvien.Entity;
-				if (((previousValue != value) 
-							|| (this._Sinhvien.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Sinhvien.Entity = null;
-						previousValue.Nhom = null;
-					}
-					this._Sinhvien.Entity = value;
-					if ((value != null))
-					{
-						value.Nhom = this;
-						this._Manhom = value.Id;
-					}
-					else
-					{
-						this._Manhom = default(int);
-					}
-					this.SendPropertyChanged("Sinhvien");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Ptda")]
-	public partial class Ptda : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Nullable<int> _Magv;
-		
-		private int _Mada;
-		
-		private int _Mssv;
-		
-		private System.Nullable<int> _Diem;
-		
-		private EntityRef<Doan> _Doan;
-		
-		private EntityRef<Gvhd> _Gvhd;
-		
-		private EntityRef<Sinhvien> _Sinhvien;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMagvChanging(System.Nullable<int> value);
-    partial void OnMagvChanged();
-    partial void OnMadaChanging(int value);
-    partial void OnMadaChanged();
-    partial void OnMssvChanging(int value);
-    partial void OnMssvChanged();
-    partial void OnDiemChanging(System.Nullable<int> value);
-    partial void OnDiemChanged();
-    #endregion
-		
-		public Ptda()
-		{
-			this._Doan = default(EntityRef<Doan>);
-			this._Gvhd = default(EntityRef<Gvhd>);
-			this._Sinhvien = default(EntityRef<Sinhvien>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Magv", DbType="Int")]
-		public System.Nullable<int> Magv
-		{
-			get
-			{
-				return this._Magv;
-			}
-			set
-			{
-				if ((this._Magv != value))
-				{
-					this.OnMagvChanging(value);
-					this.SendPropertyChanging();
-					this._Magv = value;
-					this.SendPropertyChanged("Magv");
-					this.OnMagvChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mada", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Mada
-		{
-			get
-			{
-				return this._Mada;
-			}
-			set
-			{
-				if ((this._Mada != value))
-				{
-					if ((this._Doan.HasLoadedOrAssignedValue || this._Gvhd.HasLoadedOrAssignedValue))
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMadaChanging(value);
-					this.SendPropertyChanging();
-					this._Mada = value;
-					this.SendPropertyChanged("Mada");
-					this.OnMadaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mssv", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Mssv
-		{
-			get
-			{
-				return this._Mssv;
-			}
-			set
-			{
-				if ((this._Mssv != value))
-				{
-					if (this._Sinhvien.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMssvChanging(value);
-					this.SendPropertyChanging();
-					this._Mssv = value;
-					this.SendPropertyChanged("Mssv");
-					this.OnMssvChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Diem", DbType="Int")]
-		public System.Nullable<int> Diem
-		{
-			get
-			{
-				return this._Diem;
-			}
-			set
-			{
-				if ((this._Diem != value))
-				{
-					this.OnDiemChanging(value);
-					this.SendPropertyChanging();
-					this._Diem = value;
-					this.SendPropertyChanged("Diem");
-					this.OnDiemChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Doan_Ptda", Storage="_Doan", ThisKey="Mada", OtherKey="Mada", IsForeignKey=true)]
-		public Doan Doan
-		{
-			get
-			{
-				return this._Doan.Entity;
-			}
-			set
-			{
-				Doan previousValue = this._Doan.Entity;
-				if (((previousValue != value) 
-							|| (this._Doan.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Doan.Entity = null;
-						previousValue.Ptdas.Remove(this);
-					}
-					this._Doan.Entity = value;
-					if ((value != null))
-					{
-						value.Ptdas.Add(this);
-						this._Mada = value.Mada;
-					}
-					else
-					{
-						this._Mada = default(int);
-					}
-					this.SendPropertyChanged("Doan");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Gvhd_Ptda", Storage="_Gvhd", ThisKey="Mada", OtherKey="Magv", IsForeignKey=true)]
-		public Gvhd Gvhd
-		{
-			get
-			{
-				return this._Gvhd.Entity;
-			}
-			set
-			{
-				Gvhd previousValue = this._Gvhd.Entity;
-				if (((previousValue != value) 
-							|| (this._Gvhd.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Gvhd.Entity = null;
-						previousValue.Ptdas.Remove(this);
-					}
-					this._Gvhd.Entity = value;
-					if ((value != null))
-					{
-						value.Ptdas.Add(this);
-						this._Mada = value.Magv;
-					}
-					else
-					{
-						this._Mada = default(int);
-					}
-					this.SendPropertyChanged("Gvhd");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Sinhvien_Ptda", Storage="_Sinhvien", ThisKey="Mssv", OtherKey="Id", IsForeignKey=true)]
-		public Sinhvien Sinhvien
-		{
-			get
-			{
-				return this._Sinhvien.Entity;
-			}
-			set
-			{
-				Sinhvien previousValue = this._Sinhvien.Entity;
-				if (((previousValue != value) 
-							|| (this._Sinhvien.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Sinhvien.Entity = null;
-						previousValue.Ptdas.Remove(this);
-					}
-					this._Sinhvien.Entity = value;
-					if ((value != null))
-					{
-						value.Ptdas.Add(this);
-						this._Mssv = value.Id;
-					}
-					else
-					{
-						this._Mssv = default(int);
-					}
-					this.SendPropertyChanged("Sinhvien");
+					this._TenRole = value;
+					this.SendPropertyChanged("TenRole");
+					this.OnTenRoleChanged();
 				}
 			}
 		}
@@ -925,6 +764,8 @@ namespace qldoansvhutech.Models
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private int _Id;
+		
 		private string _Hoten;
 		
 		private string _Matkhau;
@@ -933,24 +774,26 @@ namespace qldoansvhutech.Models
 		
 		private System.Nullable<bool> _Gioitinh;
 		
-		private System.Nullable<int> _Manhom;
-		
-		private string _Taikhoan;
+		private string _Mssv;
 		
 		private string _Sdt;
 		
 		private string _Hinh;
 		
-		private int _Id;
+		private System.Nullable<int> _Role;
 		
-		private EntityRef<Nhom> _Nhom;
+		private string _Magv;
 		
-		private EntitySet<Ptda> _Ptdas;
+		private EntitySet<Doan> _Doans;
+		
+		private EntitySet<Nhom> _Nhoms;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
     partial void OnHotenChanging(string value);
     partial void OnHotenChanged();
     partial void OnMatkhauChanging(string value);
@@ -959,23 +802,43 @@ namespace qldoansvhutech.Models
     partial void OnEmailChanged();
     partial void OnGioitinhChanging(System.Nullable<bool> value);
     partial void OnGioitinhChanged();
-    partial void OnManhomChanging(System.Nullable<int> value);
-    partial void OnManhomChanged();
-    partial void OnTaikhoanChanging(string value);
-    partial void OnTaikhoanChanged();
+    partial void OnMssvChanging(string value);
+    partial void OnMssvChanged();
     partial void OnSdtChanging(string value);
     partial void OnSdtChanged();
     partial void OnHinhChanging(string value);
     partial void OnHinhChanged();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
+    partial void OnRoleChanging(System.Nullable<int> value);
+    partial void OnRoleChanged();
+    partial void OnMagvChanging(string value);
+    partial void OnMagvChanged();
     #endregion
 		
 		public Sinhvien()
 		{
-			this._Nhom = default(EntityRef<Nhom>);
-			this._Ptdas = new EntitySet<Ptda>(new Action<Ptda>(this.attach_Ptdas), new Action<Ptda>(this.detach_Ptdas));
+			this._Doans = new EntitySet<Doan>(new Action<Doan>(this.attach_Doans), new Action<Doan>(this.detach_Doans));
+			this._Nhoms = new EntitySet<Nhom>(new Action<Nhom>(this.attach_Nhoms), new Action<Nhom>(this.detach_Nhoms));
 			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hoten", DbType="NVarChar(50)")]
@@ -1058,42 +921,22 @@ namespace qldoansvhutech.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Manhom", DbType="Int")]
-		public System.Nullable<int> Manhom
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mssv", DbType="NChar(50)")]
+		public string Mssv
 		{
 			get
 			{
-				return this._Manhom;
+				return this._Mssv;
 			}
 			set
 			{
-				if ((this._Manhom != value))
+				if ((this._Mssv != value))
 				{
-					this.OnManhomChanging(value);
+					this.OnMssvChanging(value);
 					this.SendPropertyChanging();
-					this._Manhom = value;
-					this.SendPropertyChanged("Manhom");
-					this.OnManhomChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Taikhoan", DbType="NChar(50)")]
-		public string Taikhoan
-		{
-			get
-			{
-				return this._Taikhoan;
-			}
-			set
-			{
-				if ((this._Taikhoan != value))
-				{
-					this.OnTaikhoanChanging(value);
-					this.SendPropertyChanging();
-					this._Taikhoan = value;
-					this.SendPropertyChanged("Taikhoan");
-					this.OnTaikhoanChanged();
+					this._Mssv = value;
+					this.SendPropertyChanged("Mssv");
+					this.OnMssvChanged();
 				}
 			}
 		}
@@ -1138,65 +981,69 @@ namespace qldoansvhutech.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Role", DbType="Int")]
+		public System.Nullable<int> Role
 		{
 			get
 			{
-				return this._Id;
+				return this._Role;
 			}
 			set
 			{
-				if ((this._Id != value))
+				if ((this._Role != value))
 				{
-					this.OnIdChanging(value);
+					this.OnRoleChanging(value);
 					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
+					this._Role = value;
+					this.SendPropertyChanged("Role");
+					this.OnRoleChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Sinhvien_Nhom", Storage="_Nhom", ThisKey="Id", OtherKey="Manhom", IsUnique=true, IsForeignKey=false)]
-		public Nhom Nhom
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Magv", DbType="VarChar(5)")]
+		public string Magv
 		{
 			get
 			{
-				return this._Nhom.Entity;
+				return this._Magv;
 			}
 			set
 			{
-				Nhom previousValue = this._Nhom.Entity;
-				if (((previousValue != value) 
-							|| (this._Nhom.HasLoadedOrAssignedValue == false)))
+				if ((this._Magv != value))
 				{
+					this.OnMagvChanging(value);
 					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Nhom.Entity = null;
-						previousValue.Sinhvien = null;
-					}
-					this._Nhom.Entity = value;
-					if ((value != null))
-					{
-						value.Sinhvien = this;
-					}
-					this.SendPropertyChanged("Nhom");
+					this._Magv = value;
+					this.SendPropertyChanged("Magv");
+					this.OnMagvChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Sinhvien_Ptda", Storage="_Ptdas", ThisKey="Id", OtherKey="Mssv")]
-		public EntitySet<Ptda> Ptdas
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Sinhvien_Doan", Storage="_Doans", ThisKey="Id", OtherKey="Id")]
+		public EntitySet<Doan> Doans
 		{
 			get
 			{
-				return this._Ptdas;
+				return this._Doans;
 			}
 			set
 			{
-				this._Ptdas.Assign(value);
+				this._Doans.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Sinhvien_Nhom", Storage="_Nhoms", ThisKey="Id", OtherKey="Id")]
+		public EntitySet<Nhom> Nhoms
+		{
+			get
+			{
+				return this._Nhoms;
+			}
+			set
+			{
+				this._Nhoms.Assign(value);
 			}
 		}
 		
@@ -1220,16 +1067,313 @@ namespace qldoansvhutech.Models
 			}
 		}
 		
-		private void attach_Ptdas(Ptda entity)
+		private void attach_Doans(Doan entity)
 		{
 			this.SendPropertyChanging();
 			entity.Sinhvien = this;
 		}
 		
-		private void detach_Ptdas(Ptda entity)
+		private void detach_Doans(Doan entity)
 		{
 			this.SendPropertyChanging();
 			entity.Sinhvien = null;
+		}
+		
+		private void attach_Nhoms(Nhom entity)
+		{
+			this.SendPropertyChanging();
+			entity.Sinhvien = this;
+		}
+		
+		private void detach_Nhoms(Nhom entity)
+		{
+			this.SendPropertyChanging();
+			entity.Sinhvien = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Ptda")]
+	public partial class Ptda : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Nullable<int> _Magv;
+		
+		private int _Mada;
+		
+		private int _Mssv;
+		
+		private System.Nullable<int> _Diem;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMagvChanging(System.Nullable<int> value);
+    partial void OnMagvChanged();
+    partial void OnMadaChanging(int value);
+    partial void OnMadaChanged();
+    partial void OnMssvChanging(int value);
+    partial void OnMssvChanged();
+    partial void OnDiemChanging(System.Nullable<int> value);
+    partial void OnDiemChanged();
+    #endregion
+		
+		public Ptda()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Magv", DbType="Int")]
+		public System.Nullable<int> Magv
+		{
+			get
+			{
+				return this._Magv;
+			}
+			set
+			{
+				if ((this._Magv != value))
+				{
+					this.OnMagvChanging(value);
+					this.SendPropertyChanging();
+					this._Magv = value;
+					this.SendPropertyChanged("Magv");
+					this.OnMagvChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mada", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Mada
+		{
+			get
+			{
+				return this._Mada;
+			}
+			set
+			{
+				if ((this._Mada != value))
+				{
+					this.OnMadaChanging(value);
+					this.SendPropertyChanging();
+					this._Mada = value;
+					this.SendPropertyChanged("Mada");
+					this.OnMadaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mssv", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Mssv
+		{
+			get
+			{
+				return this._Mssv;
+			}
+			set
+			{
+				if ((this._Mssv != value))
+				{
+					this.OnMssvChanging(value);
+					this.SendPropertyChanging();
+					this._Mssv = value;
+					this.SendPropertyChanged("Mssv");
+					this.OnMssvChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Diem", DbType="Int")]
+		public System.Nullable<int> Diem
+		{
+			get
+			{
+				return this._Diem;
+			}
+			set
+			{
+				if ((this._Diem != value))
+				{
+					this.OnDiemChanging(value);
+					this.SendPropertyChanging();
+					this._Diem = value;
+					this.SendPropertyChanged("Diem");
+					this.OnDiemChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Nhom")]
+	public partial class Nhom : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Manhom;
+		
+		private string _Tennhom;
+		
+		private System.Nullable<int> _Id;
+		
+		private EntityRef<Sinhvien> _Sinhvien;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnManhomChanging(int value);
+    partial void OnManhomChanged();
+    partial void OnTennhomChanging(string value);
+    partial void OnTennhomChanged();
+    partial void OnIdChanging(System.Nullable<int> value);
+    partial void OnIdChanged();
+    #endregion
+		
+		public Nhom()
+		{
+			this._Sinhvien = default(EntityRef<Sinhvien>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Manhom", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Manhom
+		{
+			get
+			{
+				return this._Manhom;
+			}
+			set
+			{
+				if ((this._Manhom != value))
+				{
+					this.OnManhomChanging(value);
+					this.SendPropertyChanging();
+					this._Manhom = value;
+					this.SendPropertyChanged("Manhom");
+					this.OnManhomChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tennhom", DbType="NVarChar(50)")]
+		public string Tennhom
+		{
+			get
+			{
+				return this._Tennhom;
+			}
+			set
+			{
+				if ((this._Tennhom != value))
+				{
+					this.OnTennhomChanging(value);
+					this.SendPropertyChanging();
+					this._Tennhom = value;
+					this.SendPropertyChanged("Tennhom");
+					this.OnTennhomChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int")]
+		public System.Nullable<int> Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					if (this._Sinhvien.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Sinhvien_Nhom", Storage="_Sinhvien", ThisKey="Id", OtherKey="Id", IsForeignKey=true)]
+		public Sinhvien Sinhvien
+		{
+			get
+			{
+				return this._Sinhvien.Entity;
+			}
+			set
+			{
+				Sinhvien previousValue = this._Sinhvien.Entity;
+				if (((previousValue != value) 
+							|| (this._Sinhvien.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Sinhvien.Entity = null;
+						previousValue.Nhoms.Remove(this);
+					}
+					this._Sinhvien.Entity = value;
+					if ((value != null))
+					{
+						value.Nhoms.Add(this);
+						this._Id = value.Id;
+					}
+					else
+					{
+						this._Id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Sinhvien");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

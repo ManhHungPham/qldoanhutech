@@ -2,43 +2,49 @@
 
 @{
     ViewBag.Title = "Dangkydoan";
-    Layout = "~/Views/Shared/LayoutSV.cshtml";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
-<h2>Dangkydoan</h2>
 
-@using (Html.BeginForm()) 
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Doan</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Tenda, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Tenda, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Tenda, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <center style="margin-bottom:80px">
+        <h2 style="margin-top:50px">ĐĂNG KÝ ĐỒ ÁN SINH VIÊN</h2>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Mota, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Mota, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Mota, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
+        <table style="width:40%" class="table table-borderless">
+            <tr>
+                <td>Tên đồ án: </td>
+            </tr>
+            <tr>
+                <td><input type="text" class="form-control" name="txtTenDoAn" /></td>
+            </tr>
+            <tr>
+                <td>Mô tả đồ án: </td>
+            </tr>
+            <tr>
+                <td><input type="text" class="form-control" name="txtMoTa" /></td>
+            </tr>
+            <tr>
+                <td>Tên giảng viên hướng dẫn đồ án: </td>
+            </tr>
+            <tr>
+                <td>
+                    <select name="radMaGV" class="form-control">
+                        @foreach (var item in ViewBag.DSGV)
+                        {
+                            <option value="@item.Magv">@item.Hotengv</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <input type="hidden" name="txtId" value="@ViewBag.Id"/>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Đăng ký" class="btn btn-danger" />
             </div>
         </div>
-    </div>
+    </center>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
