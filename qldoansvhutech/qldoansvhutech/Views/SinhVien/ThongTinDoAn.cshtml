@@ -1,0 +1,55 @@
+﻿@model IEnumerable < qldoansvhutech.Models.Doan>
+
+@{
+    ViewBag.Title = "ThongTinDoAn";
+    Layout = "~/Views/Shared/LayoutSV.cshtml";
+}
+
+<div class="container-fluid" style="margin-top:30px;width:70%;">
+    <center>
+        <div class="row">
+            <div class="col-12">
+                <h1>THÔNG TIN ĐỒ ÁN ĐÃ ĐĂNG KÝ</h1>
+                <table style="margin-top:20px" class="table">
+                    <tr>
+                        <th>
+                            Mã đồ án:
+                        </th>
+                        <th>
+                            Mã GVHD :
+                        </th>
+                        <th>
+                            Tên đề tài :
+                        </th>
+                        <th>
+                            Mô tả đề tài :
+                        </th>
+
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Maloai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Magv)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tenda)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mota)
+                    </td>
+
+
+                </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </center>
+</div>
